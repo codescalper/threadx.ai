@@ -48,9 +48,9 @@ export async function POST(req: Request) {
         const {password:newUserPassword,...rest}=newUser;
 
 
-        return NextResponse.json({ user: rest, message: "User created successfully" });
+        return NextResponse.json({ user: rest, message: "User created successfully" },{status:201});
     } catch (error) {
         console.error(error);
-        return NextResponse.error();
+        return NextResponse.json({ message: "Something went wrong" },{status:501});
     }
 }
