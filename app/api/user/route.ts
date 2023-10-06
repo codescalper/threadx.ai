@@ -7,7 +7,7 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { email, username, password } = body;
 
-        //To check if user exist with email already exist
+        // To check if user exists with email already exist
         const existingUserByEmail = await db.user.findUnique({
             where: { email: email },
         });
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
             });
         }
 
-        //To check if user exist with username already exist
+        // To check if user exists with username already exist
         const existingUserByUsername = await db.user.findUnique({
             where: { username: username },
         });
@@ -33,16 +33,20 @@ export async function POST(req: Request) {
             });
         }
 
-        const hashedPassword= await hash(password,10);
+        // Hash the password
+        const saltRounds = 10; // Number of salt rounds
+        const hashedPassword = await hash(password, saltRounds);
+
+        // Create a new user with the hashed password
         const newUser = await db.user.create({
             data:{
                 username,
                 email,
-                password:hashedPassword
+                password: hashedPassword
             }
-        })
+        });
 
-        return NextResponse.json({user:newUser,message:"User created successfully"});
+        return NextResponse.json({ user: newUser, message: "User created successfully" });
     } catch (error) {
         console.error(error);
         return NextResponse.error();
