@@ -1,7 +1,12 @@
+import CreateAccount from "@/components/form/SignUp";
 import React from "react";
 
-function page() {
-  return <div>page</div>;
+function SignUp() {
+  return (
+    <>
+    <CreateAccount />
+    </>
+  );
 }
 
-export default page;
+export default SignUp;
