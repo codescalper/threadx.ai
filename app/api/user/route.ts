@@ -1,11 +1,26 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
+import {z} from "zod";
+//Define schema for input validation
+
+const userSchema = z
+.object({
+  email: z.string().email(),
+  password: z
+    .string()
+    .min(8, 'Password should be greater than 8 characters')
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+      'Password must contain at least one uppercase letter, one lowercase letter, and one numeric character'
+    ),
+})
+
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { email, username, password } = body;
+        const { email, password } = userSchema.parse(body);
 
         // To check if user exists with email already exist
         const existingUserByEmail = await db.user.findUnique({
@@ -20,18 +35,7 @@ export async function POST(req: Request) {
             });
         }
 
-        // To check if user exists with username already exist
-        const existingUserByUsername = await db.user.findUnique({
-            where: { username: username },
-        });
 
-        if (existingUserByUsername) {
-            return NextResponse.json({
-                user: null,
-                message: { error: "User with this username already exists" },
-                status: 409,
-            });
-        }
 
         // Hash the password
         const saltRounds = 10; // Number of salt rounds
@@ -40,7 +44,6 @@ export async function POST(req: Request) {
         // Create a new user with the hashed password
         const newUser = await db.user.create({
             data:{
-                username,
                 email,
                 password: hashedPassword
             }

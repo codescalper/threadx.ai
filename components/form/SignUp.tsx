@@ -1,5 +1,5 @@
 "use client"
-
+import toast, { Toaster } from 'react-hot-toast';
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -16,6 +16,7 @@ import * as z from "zod"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 const formSchema = z
 .object({
@@ -35,7 +36,31 @@ const formSchema = z
 })
 
 
+
 export default function SignUp() {
+
+  const router = useRouter();
+
+const onSubmit= async (value:z.infer<typeof formSchema>) =>{
+    const response = await fetch('/api/user',{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        email:value.email,
+        password:value.password
+      })
+    })
+
+    if(response.ok){
+      toast.success('Account created successfully')
+      router.push('/sign-in')
+    }else{
+      console.error("Registration failed")
+    }
+}
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: { email: '', password: '',renteredPassword:'' },
@@ -50,14 +75,14 @@ export default function SignUp() {
             Enter your email below to create your account
           </CardDescription>
         </CardHeader>
-        <form onSubmit={form.handleSubmit(values => console.log(values))}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
-              <Button variant="outline">
+            <Button variant="outline" onClick={()=>console.log("Github")}>
                 <FaGithub className="mr-2 h-4 w-4" />
                 Github
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" onClick={()=>console.log("Google")}>
                 <FaGoogle className="mr-2 h-4 w-4" />
                 Google
               </Button>

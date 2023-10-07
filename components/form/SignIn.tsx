@@ -47,11 +47,11 @@ export default function SignIn() {
         <form onSubmit={form.handleSubmit(values => console.log(values))}>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
-              <Button variant="outline">
+              <Button variant="outline" onClick={()=>console.log("Github")}>
                 <FaGithub className="mr-2 h-4 w-4" />
                 Github
               </Button>
-              <Button variant="outline">
+              <Button variant="outline" onClick={()=>console.log("Google")}>
                 <FaGoogle className="mr-2 h-4 w-4" />
                 Google
               </Button>
