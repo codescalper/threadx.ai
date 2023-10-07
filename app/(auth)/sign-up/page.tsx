@@ -1,12 +1,12 @@
-import CreateAccount from "@/components/form/SignUp";
+import SignUpForm from "@/components/form/SignUp";
 import React from "react";
 
-function SignUp() {
+function SignUpPage() {
   return (
     <>
-    <CreateAccount />
+    <SignUpForm />
     </>
   );
 }
 
-export default SignUp;
+export default SignUpPage;
