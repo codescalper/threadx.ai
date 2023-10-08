@@ -16,7 +16,7 @@ import * as z from "zod"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from "next/link";
-
+import {signIn} from "next-auth/react"
 const formSchema = z.object({
   email: z.string().email(),
   password: z
@@ -35,6 +35,14 @@ export default function SignIn() {
     defaultValues: { email: '', password: '' },
   })
 
+  const onSubmit = async (value: z.infer<typeof formSchema>) => {
+    const signInData = await signIn('credentials', {
+      email: value.email,
+      password: value.password
+    });
+    console.log(signInData);
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <Card className="w-96 sm:w-96 md:w-96 lg:w-96 xl:w-96">
@@ -44,7 +52,7 @@ export default function SignIn() {
             Enter your email below to create your account
           </CardDescription>
         </CardHeader>
-        <form onSubmit={form.handleSubmit(values => console.log(values))}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
               <Button variant="outline" onClick={()=>console.log("Github")}>

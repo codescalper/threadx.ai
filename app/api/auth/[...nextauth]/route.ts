@@ -1,11 +1,6 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import { options } from "./options";
+import NextAuth from "next-auth";
 
+const handler = NextAuth(options);
 
-// const authOptions:NextAuthOptions={};
-// const handler = NextAuth();
-
-export default NextAuth({
-    providers: [
-      
-      ]
-})
+export {handler as GET,handler as POST}

@@ -1,28 +1,49 @@
 import type {NextAuthOptions} from 'next-auth'
+import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
+import{PrismaAdapter} from '@next-auth/prisma-adapter'
+import { db } from '@/lib/db';
+import { compare } from 'bcrypt';
 export const options:NextAuthOptions={
-    providers:[
-        GitHubProvider({
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string
-            }),
+    adapter:PrismaAdapter(db),
+    session:{
+        strategy:'jwt'
+    },
+    pages:{
+        signIn:'/sign-in'
+    },
+
+    providers: [
         CredentialsProvider({
-            name:"Credentials",
-            credential:{
-                username:{
-                    label:"Username:",
-                    type:"text",
-                    placeholder:"Your username"
-                },
-            },
-            async authorize(credentials){
-                
+          // The name to display on the sign in form (e.g. "Sign in with...")
+          name: "Credentials",
+          credentials: {
+            email: { label: "Username", type: "text", placeholder: "jsmith" },
+            password: { label: "Password", type: "password" }
+          },
+          async authorize(credentials) {
+            if(!credentials?.email || credentials?.password){
+                return null
+            };
+            const existingUser = await db.user.findUnique({
+                where:{
+                    email:credentials?.email
+                }
+            });
+            if (!existingUser){
+                return null
+            };
+            const passwordMatch = await compare(credentials.password,existingUser.password);
+
+            if(!passwordMatch){
+                return null;
             }
+
+            return {
+                id:`${existingUser.id}`,
+                email:existingUser.email
+            }
+          }
         })
-    ],
-
-}
-
-function CredentialsProvider(arg0: { name: string; credential: { username: { label: string; type: string; placeholder: string; }; }; }): import("next-auth/providers/index").Provider {
-    throw new Error('Function not implemented.');
+      ]
 }
