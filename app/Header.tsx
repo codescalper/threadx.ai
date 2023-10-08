@@ -32,7 +32,7 @@
                 <div className="text-xl font-bold sm:text-2xl xl:text-3xl cursor-pointer">ThreadX</div>
             </Link>
             <div className="flex items-center cursor-pointer  ">
-               <Link href='/'>
+               <Link href='/sign-in'>
                <Button size='lg'>Get Started</Button>
                </Link>
                     <DropdownMenu>

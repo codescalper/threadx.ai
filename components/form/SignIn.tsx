@@ -17,6 +17,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from "next/link";
 import {signIn} from "next-auth/react"
+import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast";
+
 const formSchema = z.object({
   email: z.string().email(),
   password: z
@@ -30,26 +33,47 @@ const formSchema = z.object({
 
 
 export default function SignIn() {
-  const form = useForm({
+  const router = useRouter();
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: '', password: '' },
-  })
+    defaultValues: {
+       email: '',
+       password: '',
+    },
+  });
 
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
+    console.log("onSubmit called");
     const signInData = await signIn('credentials', {
       email: value.email,
-      password: value.password
-    });
-    console.log(signInData);
+      password: value.password,
+      redirect: false,
+    })
+
+    if(signInData?.error) {
+      toast.error('Invalid credentials')
+      console.log(signInData.error)
+    }else{
+      router.push('/generate')
+      toast.success('Logged in successfully!')
+
+    }
+
+    // Success, show toast
+  
+   
   }
+ 
+
+  
 
   return (
     <div className="flex justify-center items-center h-screen">
       <Card className="w-96 sm:w-96 md:w-96 lg:w-96 xl:w-96">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Create an account</CardTitle>
+          <CardTitle className="text-2xl">Login to your account</CardTitle>
           <CardDescription>
-            Enter your email below to create your account
+            Enter your email below to login your account
           </CardDescription>
         </CardHeader>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -89,13 +113,13 @@ export default function SignIn() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type='submit' className="w-full">Create account</Button>
+            <Button type='submit' className="w-full">Sign In</Button>
             
           </CardFooter>
           <p className='text-center text-sm mt-2'>
               If you don&apos;t have an account, please&nbsp;
               <Link className='text-orange-500 hover:underline' href='/sign-up'>
-                Sign up
+                Sign up 
               </Link>
             </p>
         </form>

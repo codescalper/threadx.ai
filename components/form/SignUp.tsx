@@ -124,7 +124,7 @@ const onSubmit= async (value:z.infer<typeof formSchema>) =>{
             
           </CardFooter>
           <p className='text-center text-sm mt-2'>
-              If you don&apos;t have an account, please&nbsp;
+              Already have an account?, please&nbsp;
               <Link className='text-orange-500 hover:underline' href='/sign-in'>
                 Sign in
               </Link>
