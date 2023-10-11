@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { Header } from './Header'
+import  Header  from './Header'
 
 
 

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import LightDark from "@/components/LightDark";
+import UserSignOut from "@/components/UserSignOut";
 
     export default async function Header() {
         const session = await getServerSession(authOptions);
@@ -21,9 +22,13 @@ import LightDark from "@/components/LightDark";
                 <div className="text-xl font-bold sm:text-2xl xl:text-3xl cursor-pointer">ThreadX</div>
             </Link>
             <div className="flex items-center cursor-pointer  ">
-               <Link href='/sign-in'>
-               <Button size='lg'>Get Started</Button>
-               </Link>
+                {session?.user ? (
+                    <UserSignOut />
+                ) : (
+                       <Link href='/sign-in'>
+                       <Button size='lg'>Get Started</Button>
+                       </Link>
+                )}
                 <LightDark />
                 </div>
             </div>
