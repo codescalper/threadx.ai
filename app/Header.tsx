@@ -16,17 +16,17 @@ import UserSignOut from "@/components/UserSignOut";
 
         return (
             <div
-            className={`flex justify-between m-4 sticky top-0`}
+            className={`flex justify-between m-4 sticky top-4`}
           >            
                 <Link legacyBehavior href="/" >
                 <div className="text-xl font-bold sm:text-2xl xl:text-3xl cursor-pointer">ThreadX</div>
             </Link>
-            <div className="flex items-center cursor-pointer  ">
+            <div className="flex items-center cursor-pointer space-x-4 sm:space-x-8 lg:space-x-8 ">
                 {session?.user ? (
                     <UserSignOut />
                 ) : (
                        <Link href='/sign-in'>
-                       <Button size='lg'>Get Started</Button>
+                       <Button>Get Started</Button>
                        </Link>
                 )}
                 <LightDark />

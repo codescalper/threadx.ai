@@ -1,3 +1,4 @@
+import { FaGithub } from "react-icons/fa";
 import { Button } from "./ui/button";
 
 import React from "react";
@@ -24,7 +25,13 @@ function ClientHero() {
               </div>
 
               <div className="w-full max-w-sm space-y-2 mx-auto">
-                <Button className="bg-white text-gray-900">Try It Now</Button>
+              <a href="https://github.com/codescalper/threadX" target="blank">
+              <Button size='default' className="bg-white text-black hover:bg-white transition duration-75">
+                  <FaGithub size={24} />  Star on Github
+              </Button>
+
+
+               </a>
                 <div className="mt-4 mx-auto flex justify-center"></div>
               </div>
             </div>
