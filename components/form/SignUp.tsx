@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import { signIn } from 'next-auth/react';
 
 const formSchema = z
 .object({
@@ -78,11 +79,11 @@ const onSubmit= async (value:z.infer<typeof formSchema>) =>{
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-6">
-            <Button variant="outline" onClick={()=>console.log("Github")}>
+            <Button variant="outline" onClick={()=>signIn('github',{callbackUrl:'http://localhost:3000/generate'})}>
                 <FaGithub className="mr-2 h-4 w-4" />
                 Github
               </Button>
-              <Button variant="outline" onClick={()=>console.log("Google")}>
+              <Button variant="outline" onClick={()=>signIn('google',{callbackUrl:'http://localhost:3000/generate'})}>
                 <FaGoogle className="mr-2 h-4 w-4" />
                 Google
               </Button>

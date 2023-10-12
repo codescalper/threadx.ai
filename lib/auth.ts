@@ -1,8 +1,10 @@
 import type {NextAuthOptions} from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
 import{PrismaAdapter} from '@next-auth/prisma-adapter'
+import GitHubProvider from "next-auth/providers/github";
 import { db } from './db';
 import { compare } from 'bcrypt';
+import GoogleProvider from "next-auth/providers/google";
 export const authOptions:NextAuthOptions={
     adapter:PrismaAdapter(db),
     session:{
@@ -13,6 +15,14 @@ export const authOptions:NextAuthOptions={
     },
      
     providers: [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+      }),
+      GitHubProvider({
+        clientId: process.env.GITHUB_ID!,
+        clientSecret: process.env.GITHUB_SECRET!
+      }),
         CredentialsProvider({
           // The name to display on the sign in form (e.g. "Sign in with...")
           name: "Credentials",
@@ -32,11 +42,14 @@ export const authOptions:NextAuthOptions={
             if (!existingUser){
               return null
             };
+
+            if(existingUser.password){
             const passwordMatch = await compare(credentials.password,existingUser.password);
             if(!passwordMatch){
               return null;
             }
-            return {
+          }
+            return { 
               id:`${existingUser.id}`,
               email:existingUser.email
             }
