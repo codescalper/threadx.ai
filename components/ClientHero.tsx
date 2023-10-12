@@ -6,7 +6,7 @@ import React from "react";
 function ClientHero() {
   return (
     <>
-      <section className="flex items-center justify-center w-full h-screen py-12 md:py-24 lg:py-32 xl:py-48">
+      <section className="flex items-center justify-center w-full h-screen ">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 items-center">
             <div className="flex flex-col justify-center space-y-4 text-center">
