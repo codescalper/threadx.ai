@@ -22,11 +22,11 @@ const Generate = async () => {
         <div className="flex flex-col items-center  w-full h-screen font-medium">
           <label className="text-lg font-medium leading-none mb-4">
             Topic of thread
-            <Input type="text" className="border-2 border-gray-300 p-2 w-64 md:w-80 xl:w-96 rounded-md" placeholder="Ex: Rust as a programming language"/>
+            <Input type="text" className="border-2 mt-5 p-2 w-64 md:w-80 xl:w-96 rounded-md" placeholder="Ex: Rust as a programming language"/>
           </label>
           <label className="text-lg font-medium leading-none mb-4">
             Number of threads
-            <Input type="number" className="border-2 border-gray-300 p-2 w-16 rounded-md" placeholder="3"/>
+            <Input type="number" className="border-2 mt-5  p-2 w-16 rounded-md" placeholder="3"/>
           </label>
           <label className="text-lg font-medium leading-none mb-4">
             Select Vibe

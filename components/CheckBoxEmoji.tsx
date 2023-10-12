@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import React from "react";
 
 function CheckBoxEmoji() {
-  return <div className="space-x-2">
+  return <div className="space-x-2 ">
      <Checkbox id="emojis" />
       <label
         htmlFor="emojis"

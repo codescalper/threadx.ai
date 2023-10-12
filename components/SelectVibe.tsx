@@ -9,7 +9,7 @@ import {
   } from "@/components/ui/select"
 
 function SelectVibe() {
-  return <div>
+  return <div className="mt-5">
   <Select>
   <SelectTrigger className="w-[180px]">
     <SelectValue placeholder="Theme" />
