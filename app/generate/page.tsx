@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import CheckBoxEmoji from "@/components/CheckBoxEmoji";
 import SelectVibe from "@/components/SelectVibe";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const Generate = async () => {
   const session = await getServerSession(authOptions);
@@ -35,11 +36,19 @@ const Generate = async () => {
           <CheckBoxEmoji />
           <Button>Generate</Button>
         </div>
+        <Footer />
       </>
     );
   }
 
-  return <div>Please log in to view the generate page.</div>;
+  return (
+    <>
+      <Header />
+  <div className="flex items-center justify-center w-full h-screen selection:bg-blue-400 text-4xl font-bold tracking-tighter sm:text-5xl xl:text-8xl ">
+    Please login to see   <span className="selection:text-white bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-yellow-400 "> Generate </span> page
+    </div>
+    <Footer />
+    </>);
 };
 
 export default Generate;
