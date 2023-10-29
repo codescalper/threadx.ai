@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app/generate/page.tsx",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "app/api/generate/route.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/generate",
+      "dest": "/app/generate/page.tsx"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/app/api/$1"
+    }
+  ]
+}

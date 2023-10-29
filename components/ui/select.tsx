@@ -33,6 +33,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
+  & { onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void }
 >(({ className, children, position = "popper", ...props }, ref) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
