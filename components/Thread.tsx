@@ -10,28 +10,34 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button";
+import { useChat } from "ai/react";
+
 function Thread() {
-  const [topic, setTopic] = useState<string>("");
   const [number, setNumber] = useState<number>(0);
   const [drop, setDrop] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const options = ["Techy", "Professional", "Newbie", "Funny"];
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat();
 
   const handleEmojiChange = (checked: boolean) => {
     setChecked(checked);
-    console.log(checked);
   };
 
-  function handleTopicChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setTopic(event.target.value);
-  }
   function handleNumberChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNumber(parseInt(event.target.value));
-    console.log(number);
   }
   const onSelect = (value: string) => {
     setDrop(value);
-    console.log(drop);
+  };
+
+  const handleGenerateClick = () => {
+    console.log({
+      input,
+      number,
+      drop,
+      checked,
+    });
   };
 
   return (
@@ -40,8 +46,8 @@ function Thread() {
         Topic of thread
         <Input
           type="text"
-          value={topic}
-          onChange={handleTopicChange}
+          value={input}
+          onChange={handleInputChange}
           className="border-2 mt-5 mb-5 p-2 w-64 md:w-80 xl:w-96 rounded-md"
           placeholder="Ex: Rust as a programming language"
         />
@@ -86,7 +92,14 @@ function Thread() {
         Add emojis?
       </label>
       <div>
-        <Button>Generate</Button>
+        {!isLoading && (
+          <Button onClick={handleGenerateClick}>Generate &rarr;</Button>
+        )}
+        {isLoading && (
+          <Button disabled>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+          </Button>
+        )}
       </div>
     </div>
   );
