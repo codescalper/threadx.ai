@@ -14,7 +14,7 @@ import { useChat } from "ai/react";
 import toast, { Toaster } from "react-hot-toast";
 
 function Thread() {
-  const [number, setNumber] = useState<number>(0);
+  const [number, setNumber] = useState<number>(1);
   const [topic, setTopic] = useState<string>("");
   const [drop, setDrop] = useState<string>("Techy");
   const [checked, setChecked] = useState<boolean>(false);
@@ -30,11 +30,11 @@ function Thread() {
         checked,
       },
       onResponse() {
-        scrollToBios();
+        scrollToThreads();
       },
     });
 
-  const scrollToBios = () => {
+  const scrollToThreads = () => {
     if (threadRef.current !== null) {
       threadRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -123,11 +123,7 @@ function Thread() {
             Add emojis?
           </label>
           <div>
-            {!isLoading && (
-              <Button type="submit" onClick={handleGenerateClick}>
-                Generate &rarr;
-              </Button>
-            )}
+            {!isLoading && <Button type="submit">Generate &rarr;</Button>}
             {isLoading && (
               <Button disabled>
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
@@ -150,26 +146,29 @@ function Thread() {
                 className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                 ref={threadRef}
               >
-                Your generated bios
+                Your generated Threads🧵
               </h2>
             </div>
             <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-              {generatedThread.map((generatedBio: string) => {
-                return (
-                  <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
-                    onClick={() => {
-                      navigator.clipboard.writeText(generatedBio);
-                      toast("Bio copied to clipboard", {
-                        icon: "✂️",
-                      });
-                    }}
-                    key={generatedBio}
-                  >
-                    <p>{generatedBio}</p>
-                  </div>
-                );
-              })}
+              {generatedThread
+                .substring(generatedThread.indexOf("1") + 3)
+                .split("2.")
+                .map((generatedBio: string) => {
+                  return (
+                    <div
+                      className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
+                      onClick={() => {
+                        navigator.clipboard.writeText(generatedBio);
+                        toast("Thread copied to clipboard", {
+                          icon: "🧵",
+                        });
+                      }}
+                      key={generatedBio}
+                    >
+                      <p>{generatedBio}</p>
+                    </div>
+                  );
+                })}
             </div>
           </>
         )}

@@ -31,7 +31,7 @@ const Generate = async ({
         <Header />
         <h1 className="selection:bg-blue-400 text-xl text-center font-bold tracking-tighter sm:text-2xl xl:text-3xl mb-5">
           Welcome,{" "}
-          <span className="selection:text-white bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-800">
+          <span className="selection:text-white bg-clip-text text-transparent text-gradient">
             {emailName}
           </span>
         </h1>
@@ -46,11 +46,10 @@ const Generate = async ({
   return (
     <>
       <Header />
-      <div className="flex items-center justify-center w-full h-screen selection:bg-blue-400 text-4xl font-bold tracking-tighter sm:text-5xl xl:text-8xl ">
+      <div className="flex items-center justify-center w-full h-4/5 selection:bg-blue-400 text-4xl font-bold tracking-tighter sm:text-5xl xl:text-7xl">
         Please login to see{" "}
-        <span className="selection:text-white bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-yellow-400 ">
-          {" "}
-          Generate{" "}
+        <span className="selection:text-white bg-clip-text text-transparent text-gradient">
+           Generate 
         </span>{" "}
         page
       </div>
