@@ -1,5 +1,5 @@
   "use client"
-  import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+
   import {
     Select,
     SelectContent,
@@ -11,8 +11,6 @@
   const options = ["Techy", "Professional", "Newbie", "Funny"];
 
   function SelectVibe({ selected }: { selected: string }) {
-    // const [value, setValue] = useState("");
-    // console.log(value);
 
     const router = useRouter();
     const pathname = usePathname();
@@ -28,15 +26,16 @@
   
       const search = current.toString();
       const query = search ? `?${search}` : "";
-      console.log(query)
+      // console.log(selected)
       router.push(`${pathname}${query}`);
     };
    
 
     return (
-      <div className="mt-5">
+      <div className="mt-5 xl:mt-15 md:mt-10">
+         <label className="text-lg font-medium leading-none mb-4"> Select Vibe 
         <Select onValueChange={onSelect} >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="order-2 mt-5 p-2 w-64 md:w-80 xl:w-96 rounded-md">
             <SelectValue placeholder="Theme" />
           </SelectTrigger>
           <SelectContent>
@@ -47,6 +46,7 @@
             ))}
           </SelectContent>
         </Select>
+        </label>
       </div>
     );
   }
