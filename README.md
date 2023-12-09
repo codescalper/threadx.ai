@@ -30,6 +30,8 @@
 
 - [🙌 Contributors](#contributors)
 
+- [📄 License](#license)
+
 ## 📁 Project Structure
 
 ```bash
@@ -179,3 +181,7 @@ npm run dev
 <a href="https://github.com/codescalper/threadx/graphs/contributors">
 <img src="https://contrib.rocks/image?repo=codescalper/threadx" />
 </a>
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [**MIT License**](https://github.com/codescalper/threadx/blob/main/LICENSE) file for details.
