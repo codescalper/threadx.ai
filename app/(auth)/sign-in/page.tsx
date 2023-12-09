@@ -6,9 +6,8 @@ import React from "react";
 function SignInPage() {
   return (
     <>
-    <Header />
-    <SignInForm />
-    <Footer />
+      <SignInForm />
+      <Footer />
     </>
   );
 }

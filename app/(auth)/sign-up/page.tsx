@@ -6,9 +6,8 @@ import React from "react";
 function SignUpPage() {
   return (
     <>
-    <Header />
-    <SignUpForm />
-    <Footer />
+      <SignUpForm />
+      <Footer />
     </>
   );
 }
