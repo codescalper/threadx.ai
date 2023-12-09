@@ -32,7 +32,11 @@ function Thread() {
       onResponse() {
         scrollToThreads();
       },
+      onError: (err) => {
+        toast.error(err.message);
+      },
     });
+  console.log(checked);
 
   const scrollToThreads = () => {
     if (threadRef.current !== null) {
@@ -43,6 +47,26 @@ function Thread() {
   const lastMessage = messages[messages.length - 1];
   const generatedThread =
     lastMessage?.role === "assistant" ? lastMessage.content : null;
+
+  const splittedArray = [];
+  // Initialize the current index to 0
+  let currentIndex = 0;
+
+  // Loop from 1 to num
+  if (generatedThread) {
+    for (let i = 1; i <= number; i++) {
+      // Find the next index by searching for the number followed by a dot and a space
+      let nextIndex = generatedThread.indexOf(`${i + 1}. `, currentIndex);
+      // If the next index is not found, set it to the length of the string
+      if (nextIndex === -1) {
+        nextIndex = generatedThread.length;
+      }
+      // Slice the string from the current index to the next index and push it to the array
+      splittedArray.push(generatedThread.slice(currentIndex, nextIndex));
+      // Update the current index to the next index
+      currentIndex = nextIndex;
+    }
+  }
 
   const handleEmojiChange = (checked: boolean) => {
     setChecked(checked);
@@ -153,26 +177,23 @@ function Thread() {
                 Your generated <span className="text-gradient"> Threads🧵</span>
               </h2>
             </div>
+
             <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-              {generatedThread
-                .substring(generatedThread.indexOf("1") + 3)
-                .split("2.")
-                .map((generatedBio: string) => {
-                  return (
-                    <div
-                      className="bg-white dark:bg-black/75 rounded-xl shadow-xlshadow-orange-400 p-4 hover:bg-gray-100 dark:hover:bg-gray-800  transition cursor-copy border"
-                      onClick={() => {
-                        navigator.clipboard.writeText(generatedBio);
-                        toast("Thread copied to clipboard", {
-                          icon: "🧵",
-                        });
-                      }}
-                      key={generatedBio}
-                    >
-                      <p>{generatedBio}</p>
-                    </div>
-                  );
-                })}
+              {splittedArray.map((generatedBio, index) => (
+                <div
+                  className="bg-white dark:bg-black/75 rounded-xl shadow-xl shadow-orange-400 p-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-copy border"
+                  onClick={() => {
+                    navigator.clipboard.writeText(generatedBio);
+                    // Assuming you have a library like react-toastify for toasts
+                    toast("Thread copied to clipboard", {
+                      icon: "🧵",
+                    });
+                  }}
+                  key={index} // Use index as the key instead of generatedBio
+                >
+                  <p>{generatedBio}</p>
+                </div>
+              ))}
             </div>
           </>
         )}
