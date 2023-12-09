@@ -69,6 +69,7 @@ body,
   );
 
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 300% 300%;
   animation: animationGradient 3s ease alternate infinite;

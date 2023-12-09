@@ -1,14 +1,8 @@
 import { authOptions } from "@/lib/auth";
-import React, { useState } from "react";
+import React from "react";
 import { getServerSession } from "next-auth";
 import Header from "@/app/Header";
-import { Input } from "@/components/ui/input";
-import SelectVibe from "@/components/SelectVibe";
-import CheckBoxEmoji from "@/components/CheckBoxEmoji";
-import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
-import Topic from "@/components/input";
-import Number from "@/components/Number";
 import Thread from "@/components/Thread";
 
 const Generate = async ({
@@ -37,8 +31,8 @@ const Generate = async ({
         </h1>
         <div className="flex flex-col items-center w-full h-screen font-medium">
           <Thread />
+          <Footer />
         </div>
-        <Footer />
       </>
     );
   }

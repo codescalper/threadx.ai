@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       messages: [
         {
           role: "user",
-          content: `Generate ${number} twitter threads on the topic:${topic} with no hashtags and clearly labeled "1." and "2." till the number mentioned. The vibe of the thread should be ${drop} ${
+          content: `Generate ${number} (if the number is 1 then please give only one post bsacially whatever is the number give that many post and then stop that's the strict order) twitter threads on the topic:${topic} with no hashtags and clearly labeled "1." and "2." till the number mentioned. The vibe of the thread should be ${drop} ${
             checked
               ? "Make sure there is no emoji, no mention of other social media, and no mention of other people stick to the topic. Strictly there should be no emoji."
               : null

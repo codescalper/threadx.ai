@@ -22,7 +22,7 @@ function ClientHero() {
                 <p className="selection:bg-orange-400 selection:text-black max-w-[800px] md:text-xl mx-auto ">
                   Use ThreadX to generate captivating Twitter threads
                   effortlessly with the power of AI. Choose from a variety of
-                  topics and let the AI do the rest.
+                  vibes and let the AI do the rest.
                 </p>
               </div>
 
@@ -30,7 +30,7 @@ function ClientHero() {
                 <a href="https://github.com/codescalper/threadX" target="blank">
                   <Button
                     size="default"
-                    className="bg-white text-black hover:bg-white transition duration-75"
+                    className="bg-white text-black hover:bg-white shadow-lg dark:hover:shadow-yellow-400 hover:shadow-orange-500 dark:shadow-zinc-500 transition duration-200"
                   >
                     <FaGithub size={24} />  Star on Github
                   </Button>
