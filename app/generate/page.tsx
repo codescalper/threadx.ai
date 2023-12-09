@@ -23,7 +23,7 @@ const Generate = async ({
     return (
       <div>
         <Header />
-        <h1 className="selection:bg-blue-400 text-xl text-center font-bold tracking-tighter sm:text-2xl xl:text-3xl mb-5 ">
+        <h1 className="selection:bg-blue-400 text-xl text-center font-bold tracking-tighter mt-5 sm:text-2xl xl:text-3xl mb-5 ">
           Welcome,{" "}
           <span className="selection:text-white bg-clip-text text-transparent text-gradient">
             {emailName}
