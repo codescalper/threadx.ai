@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
 import {
@@ -64,11 +64,12 @@ function Thread() {
       checked,
     });
   };
-
+  useEffect(() => {
+    setTopic(input);
+  }, [input]);
   const onSubmit = (e: any) => {
     e.preventDefault();
-    const currentTopic = input;
-    setTopic(currentTopic);
+
     handleSubmit(e);
   };
 
@@ -129,7 +130,7 @@ function Thread() {
             {!isLoading && <Button onClick={onSubmit}>Generate &rarr;</Button>}
             {isLoading && (
               <Button disabled>
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-[10px] w-[10px] rounded-full bg-yellow-400 opacity-75"></span>
               </Button>
             )}
           </div>
