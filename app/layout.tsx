@@ -1,19 +1,20 @@
-import { ThemeProvider } from '@/components/theme-provider'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Toaster } from 'react-hot-toast';
-const inter = Inter({ subsets: ['latin'] })
+import { ThemeProvider } from "@/components/theme-provider";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import Header from "./Header";
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Twitter Thread Generator',
-  description: 'AI Platform to generate threads for twitter',
-}
+  title: "Twitter Thread Generator",
+  description: "AI Platform to generate threads for twitter",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -24,9 +25,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
-           <Toaster />
-
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
