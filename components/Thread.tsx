@@ -171,14 +171,15 @@ function Thread() {
           <>
             <div>
               <h2
-                className="sm:text-4xl text-3xl font-bold mx-auto"
+                className="xl:text-4xl text-3xl text-center font-bold mx-auto"
                 ref={threadRef}
               >
-                Your generated <span className="text-gradient"> Threads🧵</span>
+                Your generated <span className="text-gradient"> Threads</span>{" "}
+                🧵
               </h2>
             </div>
 
-            <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
+            <div className="space-y-8 xl:p-5 p-10 flex flex-col items-center justify-center max-w-xl mx-auto">
               {splittedArray.map((generatedBio, index) => (
                 <div
                   className="bg-white dark:bg-black/75 rounded-xl shadow-xl shadow-orange-400 p-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-copy border"

@@ -87,6 +87,9 @@ body,
     background-position: 100% 0%;
   }
 }
+body {
+  overflow: auto;
+}
 
 @layer base {
   * {
