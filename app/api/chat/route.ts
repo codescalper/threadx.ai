@@ -20,12 +20,12 @@ export async function POST(req: Request) {
       messages: [
         {
           role: "user",
-          content: `Generate ${number} (if the number is 1 then please give only one post bsacially whatever is the number give that many post and then stop that's the strict order) twitter threads on the topic:${topic} with no hashtags and clearly labeled "1." and "2." till the number mentioned. The vibe of the thread should be ${drop} and ${
+          content: `Generate ${number} (if the number is 1 then please give only one post basically whatever is the number give that many posts and then stop that's the strict order) Twitter threads on the topic:${topic} with no hashtags and clearly labeled "1." and "2." till the number mentioned. The vibe of the thread should be ${drop} and ${
             checked
               ? "Add some realted emoji to the topic."
-              : "Make sure there is no emoji, not a single emoji should be there in any of the post and it's a strict rule for you don't breeak it, and no mention of other people stick to the topic. Strictly there should be no emoji."
+              : "Make sure there is no emoji, not a single emoji should be there in any of the posts and it's a strict rule for you don't break it, and no mention of other people, stick to the topic. Strictly there should be no emoji."
           }
-            Make sure each generated thread post is less than 220 characters, and at the end of the every thread add the 🧵(current number of post)/${number}`,
+            Make sure each generated thread post is less than 220 characters, and at the end of every thread add the 🧵(current number of posts)/${number}`,
         },
       ],
     });
