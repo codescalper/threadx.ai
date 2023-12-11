@@ -25,7 +25,7 @@ export async function POST(req: Request) {
               ? "Add some realted emoji to the topic."
               : "Make sure there is no emoji, not a single emoji should be there in any of the posts and it's a strict rule for you don't break it, and no mention of other people, stick to the topic. Strictly there should be no emoji."
           }
-            Make sure each generated thread post is less than 220 characters, and at the end of every thread add the 🧵(current number of posts)/${number}`,
+            Make sure each generated thread post is less than 220 characters, and at the end of every thread add the 🧵(current number of post)/${number}`,
         },
       ],
     });
