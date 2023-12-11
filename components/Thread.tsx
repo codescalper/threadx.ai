@@ -182,7 +182,7 @@ function Thread() {
             <div className="space-y-8 xl:p-5 p-10 flex flex-col items-center justify-center max-w-xl mx-auto">
               {splittedArray.map((generatedBio, index) => (
                 <div
-                  className="bg-white dark:bg-black/75 rounded-xl shadow-xl shadow-orange-400 p-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-copy border"
+                  className="bg-white dark:bg-black/75 rounded-xl shadow-md shadow-orange-400 p-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-copy border"
                   onClick={() => {
                     navigator.clipboard.writeText(generatedBio);
                     // Assuming you have a library like react-toastify for toasts
